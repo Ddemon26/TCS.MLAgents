@@ -83,14 +83,18 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
                 float distance = Vector3.Distance(transform.localPosition, targetPrey.localPosition);
                 sensor.AddObservation(distance);
             }
+            
+            sensor.AddObservation(Time.time - episodeStartTime);
         }
         
         public override void OnActionReceived(ActionBuffers actionBuffers) {
             if (config == null) return;
             
             var continuousActions = actionBuffers.ContinuousActions;
-            Vector3 force = new Vector3(continuousActions[0], 0, continuousActions[1]);
-            movement.ApplyForce(force);
+            if (continuousActions.Length >= 2) {
+                Vector3 force = new Vector3(continuousActions[0], 0, continuousActions[1]);
+                movement.ApplyForce(force);
+            }
             
             rewardSystem.ApplyTimePenalty();
             
@@ -143,8 +147,10 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         
         public override void Heuristic(in ActionBuffers actionsOut) {
             var continuousActionsOut = actionsOut.ContinuousActions;
-            continuousActionsOut[0] = Input.GetAxis("Horizontal");
-            continuousActionsOut[1] = Input.GetAxis("Vertical");
+            if (continuousActionsOut.Length >= 2) {
+                continuousActionsOut[0] = Input.GetAxis("Horizontal");
+                continuousActionsOut[1] = Input.GetAxis("Vertical");
+            }
         }
         
         void OnCollisionEnter(Collision collision) {
