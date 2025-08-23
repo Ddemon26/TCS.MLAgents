@@ -44,19 +44,8 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             foreach (var predator in predators) {
                 if (predator == null) continue;
                 
-                var movement = predator.GetComponent<Movement>();
-                if (movement != null) {
+                if (predator.TryGetComponent<Movement>(out var movement)) {
                     movement.Speed = config.predatorSpeed;
-                }
-                
-                var boundarySystem = predator.GetComponent<BoundarySystem>();
-                if (boundarySystem == null) {
-                    boundarySystem = predator.gameObject.AddComponent<BoundarySystem>();
-                }
-                
-                var rewardSystem = predator.GetComponent<RewardSystem>();
-                if (rewardSystem == null) {
-                    rewardSystem = predator.gameObject.AddComponent<RewardSystem>();
                 }
             }
         }
@@ -65,8 +54,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             foreach (var preyController in prey) {
                 if (preyController == null) continue;
                 
-                var movement = preyController.GetComponent<Movement>();
-                if (movement != null) {
+                if (preyController.TryGetComponent<Movement>(out var movement)) {
                     movement.Speed = config.preySpeed;
                 }
             }

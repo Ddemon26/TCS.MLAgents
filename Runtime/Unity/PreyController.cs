@@ -2,6 +2,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+    [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(BoundarySystem))]
     public class PreyController : MonoBehaviour {
         [SerializeField] SimulationConfig config;
         
@@ -14,9 +16,6 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         void Awake() {
             movement = GetComponent<Movement>();
             boundarySystem = GetComponent<BoundarySystem>();
-            
-            if (movement == null) movement = gameObject.AddComponent<Movement>();
-            if (boundarySystem == null) boundarySystem = gameObject.AddComponent<BoundarySystem>();
         }
         
         void Start() {
@@ -29,11 +28,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             if (config == null) return;
             
             movement.Speed = config.preySpeed;
-            
-            if (boundarySystem != null) {
-                var bounds = boundarySystem;
-                bounds.enabled = config.preyBouncesOffWalls;
-            }
+            boundarySystem.enabled = config.preyBouncesOffWalls;
         }
         
         void FixedUpdate() {

@@ -2,22 +2,22 @@
     "PredatorBehavior": {
         "checkpoints": [
             {
-                "steps": 832,
-                "file_path": "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-832.onnx",
-                "reward": 0.025760562910081844,
-                "creation_time": 1755963577.164454,
+                "steps": 0,
+                "file_path": "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-0.onnx",
+                "reward": null,
+                "creation_time": 1755964271.8940926,
                 "auxillary_file_paths": [
-                    "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-832.pt"
+                    "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-0.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 832,
+            "steps": 0,
             "file_path": "results\\predator_v1\\PredatorBehavior.onnx",
-            "reward": 0.025760562910081844,
-            "creation_time": 1755963577.164454,
+            "reward": null,
+            "creation_time": 1755964271.8940926,
             "auxillary_file_paths": [
-                "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-832.pt"
+                "results\\predator_v1\\PredatorBehavior\\PredatorBehavior-0.pt"
             ]
         }
     },

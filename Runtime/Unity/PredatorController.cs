@@ -5,6 +5,10 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.SideChannels;
 
 namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+    [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(BoundarySystem))]
+    [RequireComponent(typeof(RewardSystem))]
+    [RequireComponent(typeof(ConeVision))]
     public class PredatorController : Agent {
         [SerializeField] Transform targetPrey;
         [SerializeField] SimulationConfig config;
@@ -12,6 +16,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         Movement movement;
         BoundarySystem boundarySystem;
         RewardSystem rewardSystem;
+        ConeVision coneVision;
         StringLogSideChannel logChannel;
         
         float episodeStartTime;
@@ -20,10 +25,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             movement = GetComponent<Movement>();
             boundarySystem = GetComponent<BoundarySystem>();
             rewardSystem = GetComponent<RewardSystem>();
-            
-            if (movement == null) movement = gameObject.AddComponent<Movement>();
-            if (boundarySystem == null) boundarySystem = gameObject.AddComponent<BoundarySystem>();
-            if (rewardSystem == null) rewardSystem = gameObject.AddComponent<RewardSystem>();
+            coneVision = GetComponent<ConeVision>();
             
             SetupFromConfig();
             
@@ -37,7 +39,6 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             if (config == null) return;
             
             movement.Speed = config.predatorSpeed;
-            boundarySystem.GetComponent<BoundarySystem>().enabled = false;
         }
         
         public override void OnEpisodeBegin() {
@@ -56,8 +57,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         void ResetPrey() {
             if (targetPrey == null) return;
             
-            var preyController = targetPrey.GetComponent<PreyController>();
-            if (preyController != null) {
+            if (targetPrey.TryGetComponent<PreyController>(out var preyController)) {
                 preyController.Respawn();
             }
         }
@@ -65,14 +65,15 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         public override void CollectObservations(VectorSensor sensor) {
             if (targetPrey == null || config == null) return;
             
-            Vector3 relativePosition = targetPrey.localPosition - transform.localPosition;
-            sensor.AddObservation(relativePosition);
+            sensor.AddObservation(movement.Velocity);
+            sensor.AddObservation(movement.Forward);
+            sensor.AddObservation(Time.time - episodeStartTime);
+            
+            float[] visionDistances = coneVision.GetDistanceObservations();
+            sensor.AddObservation(visionDistances);
             
             if (config.includeVelocityObservations) {
-                sensor.AddObservation(movement.Velocity);
-                
-                var preyMovement = targetPrey.GetComponent<Movement>();
-                if (preyMovement != null) {
+                if (targetPrey.TryGetComponent<Movement>(out var preyMovement)) {
                     sensor.AddObservation(preyMovement.Velocity);
                 } else {
                     sensor.AddObservation(Vector3.zero);
@@ -80,11 +81,12 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             }
             
             if (config.includeDistanceObservations) {
+                Vector3 relativePosition = targetPrey.localPosition - transform.localPosition;
+                sensor.AddObservation(relativePosition.normalized);
+                
                 float distance = Vector3.Distance(transform.localPosition, targetPrey.localPosition);
-                sensor.AddObservation(distance);
+                sensor.AddObservation(distance / 20f);
             }
-            
-            sensor.AddObservation(Time.time - episodeStartTime);
         }
         
         public override void OnActionReceived(ActionBuffers actionBuffers) {
@@ -92,8 +94,11 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             
             var continuousActions = actionBuffers.ContinuousActions;
             if (continuousActions.Length >= 2) {
-                Vector3 force = new Vector3(continuousActions[0], 0, continuousActions[1]);
-                movement.ApplyForce(force);
+                float forwardForce = continuousActions[0];
+                float rotationForce = continuousActions[1];
+                
+                movement.MoveForward(forwardForce);
+                movement.Rotate(rotationForce);
             }
             
             rewardSystem.ApplyTimePenalty();
@@ -101,6 +106,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             CheckForCatch();
             CheckBoundaries();
             CheckEpisodeTimeout();
+            CheckVisionReward();
             
             LogStatistics();
         }
@@ -138,18 +144,30 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
             }
         }
         
+        void CheckVisionReward() {
+            if (targetPrey == null || coneVision == null) return;
+            
+            if (coneVision.CanSeeTarget(targetPrey)) {
+                rewardSystem.GiveReward(0.001f);
+            }
+        }
+        
         void LogStatistics() {
             if (targetPrey == null) return;
             
             float distance = Vector3.Distance(transform.localPosition, targetPrey.localPosition);
             Academy.Instance.StatsRecorder.Add("Predator/DistanceToPrey", distance);
+            
+            if (coneVision != null) {
+                Academy.Instance.StatsRecorder.Add("Predator/CanSeePrey", coneVision.CanSeeTarget(targetPrey) ? 1f : 0f);
+            }
         }
         
         public override void Heuristic(in ActionBuffers actionsOut) {
             var continuousActionsOut = actionsOut.ContinuousActions;
             if (continuousActionsOut.Length >= 2) {
-                continuousActionsOut[0] = Input.GetAxis("Horizontal");
-                continuousActionsOut[1] = Input.GetAxis("Vertical");
+                continuousActionsOut[0] = Input.GetAxis("Vertical");
+                continuousActionsOut[1] = Input.GetAxis("Horizontal");
             }
         }
         
