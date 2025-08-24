@@ -172,10 +172,10 @@ Create a composition-based MLAgent library that eliminates unnecessary inheritan
 
 ### Phase 4: Configuration & Tooling
 10. **Behavior Configuration**
-    - [ ] Create `MLBehaviorConfig.cs` ScriptableObject
-    - [ ] Implement `BehaviorApplicator.cs`
-    - [ ] Create configuration validation system
-    - [ ] Editor tools for behavior configuration
+    - [x] Create `MLBehaviorConfig.cs` ScriptableObject
+    - [x] Implement `BehaviorApplicator.cs`
+    - [x] Create configuration validation system
+    - [x] Editor tools for behavior configuration
 
 11. **Statistics & Monitoring**
     - [x] Create `IStatisticsProvider.cs` interface
@@ -222,56 +222,7 @@ Each component will have its own ScriptableObject configuration:
 5. **Extensibility**: Easy to add new observation/action/reward providers
 
 ## File Structure
-```
-Assets/_Damon/TCS.MLAgents/Runtime/Core/
-├── Interfaces/
-│   ├── IMLAgent.cs
-│   ├── IObservationProvider.cs
-│   ├── IActionReceiver.cs
-│   ├── IRewardProvider.cs
-│   ├── IEpisodeHandler.cs
-│   ├── ISensorProvider.cs
-│   └── IMLCommunicator.cs
-├── Core/
-│   ├── MLAgentComposer.cs
-│   ├── AgentContext.cs
-│   ├── VectorObservationCollector.cs
-│   ├── ActionDistributor.cs
-│   ├── RewardCalculator.cs
-│   ├── EpisodeManager.cs
-│   └── SensorManager.cs
-├── Observations/
-│   ├── TransformObservationProvider.cs
-│   ├── VelocityObservationProvider.cs
-│   ├── RelativePositionObservationProvider.cs
-│   ├── VisionObservationProvider.cs
-│   └── TimeObservationProvider.cs
-├── Actions/
-│   ├── MovementActionReceiver.cs
-│   ├── RotationActionReceiver.cs
-│   └── DiscreteActionReceiver.cs
-├── Rewards/
-│   ├── ProximityRewardProvider.cs
-│   ├── TimeRewardProvider.cs
-│   ├── BoundaryRewardProvider.cs
-│   ├── TaskCompletionRewardProvider.cs
-│   └── EfficiencyRewardProvider.cs
-├── Episodes/
-│   ├── PositionResetHandler.cs
-│   ├── StateResetHandler.cs
-│   └── EnvironmentResetHandler.cs
-├── Communication/
-│   ├── CustomSideChannelManager.cs
-│   ├── LoggingChannel.cs
-│   ├── MetricsChannel.cs
-│   └── CommandChannel.cs
-├── Decision/
-│   ├── DecisionRouter.cs
-│   └── HeuristicController.cs
-└── Utilities/
-    ├── ObservationBuffer.cs
-    ├── ActionBuffer.cs
-    ├── StatisticsCollector.cs
-    ├── PerformanceMonitor.cs
-    └── StatisticsVisualizer.cs
-```
+├── Configuration/
+│   ├── MLBehaviorConfig.cs
+│   ├── BehaviorApplicator.cs
+│   └── ConfigurationValidator.cs

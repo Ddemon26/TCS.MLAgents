@@ -12,7 +12,7 @@ namespace TCS.MLAgents.Utilities {
     /// <summary>
     /// Performance monitoring component that tracks agent and system performance metrics.
     /// </summary>
-    public class PerformanceMonitor : MonoBehaviour, IStatisticsProvider {
+    public class PerformanceMonitor : MonoBehaviour, TCS.MLAgents.Interfaces.IStatisticsProvider {
         [Header("Performance Configuration")]
         [SerializeField] private string m_Id = "performance";
         [SerializeField] private int m_Priority = 50;
@@ -65,6 +65,13 @@ namespace TCS.MLAgents.Utilities {
             m_ChangedStatistics = new Dictionary<string, float>();
         }
         
+        public void Initialize(AgentContext context) {
+            m_Context = context;
+            ResetStatistics();
+            
+            LogDebug($"PerformanceMonitor {m_Id} initialized");
+        }
+        
         void Update() {
             // Update frame counters
             m_FrameCount++;
@@ -89,15 +96,17 @@ namespace TCS.MLAgents.Utilities {
         
         private void UpdatePerformanceMetrics() {
             // Calculate FPS
-            float fps = (m_FrameCount - m_LastFrameCount) / m_AccumulatedDeltaTime;
-            m_CurrentFPS = fps;
-            
-            // Update FPS tracking
-            if (fps < m_MinFPS) m_MinFPS = fps;
-            if (fps > m_MaxFPS) m_MaxFPS = fps;
-            
-            // Update average FPS
-            m_AverageFPS = (m_AverageFPS * (m_SampleCount - 1) + fps) / m_SampleCount;
+            if (m_AccumulatedDeltaTime > 0f) {
+                float fps = (m_FrameCount - m_LastFrameCount) / m_AccumulatedDeltaTime;
+                m_CurrentFPS = fps;
+                
+                // Update FPS tracking
+                if (fps < m_MinFPS) m_MinFPS = fps;
+                if (fps > m_MaxFPS) m_MaxFPS = fps;
+                
+                // Update average FPS
+                m_AverageFPS = (m_AverageFPS * (m_SampleCount - 1) + fps) / m_SampleCount;
+            }
             
             // Update memory tracking
             UpdateMemoryStatistics();
@@ -110,7 +119,11 @@ namespace TCS.MLAgents.Utilities {
         private void UpdateMemoryStatistics() {
             // Get current memory usage
             long monoUsedSize = GC.GetTotalMemory(false);
+#if UNITY_EDITOR
             long totalUsedSize = Profiler.GetTotalAllocatedMemoryLong();
+#else
+            long totalUsedSize = monoUsedSize; // Fallback for builds
+#endif
             
             // Update peak memory usage
             if (monoUsedSize > m_PeakMonoUsedSize) m_PeakMonoUsedSize = monoUsedSize;
