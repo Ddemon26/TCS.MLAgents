@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using TCS.MLAgents.Core;
-using TCS.MLAgents.Core.Interfaces;
+using TCS.MLAgents.Interfaces;
 using Object = UnityEngine.Object;
 
 namespace TCS.MLAgents.Core.Tests {

@@ -1,7 +1,7 @@
+using TCS.MLAgents.Core;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-
-namespace TCS.MLAgents.Core.Interfaces {
+namespace TCS.MLAgents.Interfaces {
     /// <summary>
     /// Core interface defining the lifecycle and capabilities of an ML Agent.
     /// This interface bridges Unity ML-Agents with the composition system.

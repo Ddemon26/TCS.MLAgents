@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using TCS.MLAgents.Interfaces;
+using TCS.MLAgents.Utilities;
 using UnityEngine;
 using Unity.MLAgents.Sensors;
-using TCS.MLAgents.Core.Interfaces;
-using TCS.MLAgents.Core.Utilities;
 
 namespace TCS.MLAgents.Core {
     /// <summary>

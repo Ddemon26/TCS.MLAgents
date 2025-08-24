@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using TCS.MLAgents.Interfaces;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using TCS.MLAgents.Core.Interfaces;
 
 namespace TCS.MLAgents.Core {
     /// <summary>

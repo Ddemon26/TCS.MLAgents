@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace TCS.MLAgents.Core.Utilities {
+namespace TCS.MLAgents.Utilities {
     /// <summary>
     /// Efficient buffer for collecting and managing observation data.
     /// Provides optimized storage and retrieval for ML agent observations.

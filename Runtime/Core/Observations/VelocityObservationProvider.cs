@@ -1,8 +1,7 @@
-using UnityEngine;
+using TCS.MLAgents.Core;
+using TCS.MLAgents.Interfaces;
 using Unity.MLAgents.Sensors;
-using TCS.MLAgents.Core.Interfaces;
-
-namespace TCS.MLAgents.Core.Observations {
+namespace TCS.MLAgents.Observations {
     /// <summary>
     /// Provides observations based on Rigidbody velocity and angular velocity.
     /// Supports both linear and angular velocity with optional normalization and smoothing.

@@ -1,6 +1,5 @@
-using Unity.MLAgents.Actuators;
-
-namespace TCS.MLAgents.Core.Interfaces {
+using TCS.MLAgents.Core;
+namespace TCS.MLAgents.Interfaces {
     /// <summary>
     /// Interface for components that receive and process actions from the ML agent.
     /// Action receivers handle specific types of actions (movement, rotation, discrete choices, etc.).

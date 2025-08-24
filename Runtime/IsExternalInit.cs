@@ -1,3 +1,3 @@
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime {
+namespace TCS.MLAgents {
     internal static class IsExternalInit { }
 }

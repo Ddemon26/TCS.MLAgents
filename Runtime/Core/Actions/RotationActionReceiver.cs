@@ -1,7 +1,6 @@
-using UnityEngine;
-using TCS.MLAgents.Core.Interfaces;
-
-namespace TCS.MLAgents.Core.Actions {
+using TCS.MLAgents.Core;
+using TCS.MLAgents.Interfaces;
+namespace TCS.MLAgents.Actions {
     /// <summary>
     /// Receives and processes rotation actions from the ML agent.
     /// Supports various rotation modes including torque-based, angular velocity, and direct rotation.

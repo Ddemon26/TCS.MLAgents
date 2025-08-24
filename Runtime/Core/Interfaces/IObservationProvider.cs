@@ -1,6 +1,6 @@
+using TCS.MLAgents.Core;
 using Unity.MLAgents.Sensors;
-
-namespace TCS.MLAgents.Core.Interfaces {
+namespace TCS.MLAgents.Interfaces {
     /// <summary>
     /// Interface for components that provide observations to the ML agent.
     /// Observation providers can contribute data that the neural network uses for decision making.

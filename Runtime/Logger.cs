@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime {
+namespace TCS.MLAgents {
     internal static class Logger {
         const string CLASS_COLOR = "cyan";
         const string CONTEXT_COLOR = "white";
