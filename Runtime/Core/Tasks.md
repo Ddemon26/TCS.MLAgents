@@ -165,10 +165,10 @@ Create a composition-based MLAgent library that eliminates unnecessary inheritan
    - [x] Python-side communication handlers example
 
 9. **Decision System**
-   - [ ] Create `IDecisionProvider.cs` interface
-   - [ ] Implement `DecisionRouter.cs`
-   - [ ] Create `HeuristicController.cs`
-   - [ ] Decision system testing framework
+   - [x] Create `IDecisionProvider.cs` interface
+   - [x] Implement `DecisionRouter.cs`
+   - [x] Create `HeuristicController.cs`
+   - [x] Decision system testing framework
 
 ### Phase 4: Configuration & Tooling
 10. **Behavior Configuration**
@@ -265,12 +265,9 @@ Assets/_Damon/TCS.MLAgents/Runtime/Core/
 │   ├── LoggingChannel.cs
 │   ├── MetricsChannel.cs
 │   └── CommandChannel.cs
-├── Configuration/
-│   ├── MLBehaviorConfig.cs
-│   ├── VisionConfig.cs
-│   ├── MovementConfig.cs
-│   ├── RewardConfig.cs
-│   └── EpisodeConfig.cs
+├── Decision/
+│   ├── DecisionRouter.cs
+│   └── HeuristicController.cs
 └── Utilities/
     ├── ObservationBuffer.cs
     ├── ActionBuffer.cs
