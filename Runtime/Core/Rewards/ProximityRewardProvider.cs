@@ -1,13 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Rewards {
     /// <summary>
     /// Provides rewards based on proximity to target objects.
     /// Gives positive rewards for getting closer and negative for moving away.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class ProximityRewardProvider : RewardProviderBase {
         [Header("Proximity Settings")]
         [SerializeField] Transform targetTransform;

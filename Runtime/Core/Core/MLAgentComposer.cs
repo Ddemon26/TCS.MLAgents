@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -87,7 +85,7 @@ namespace TCS.MLAgents.Core {
                 if (isInitialized) {
                     try {
                         component.Initialize();
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[MLAgentComposer] Error initializing component {component.GetType().Name}: {e.Message}");
                     }
                 }
@@ -138,7 +136,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.Initialize();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error initializing component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -155,7 +153,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.OnEpisodeBegin();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error in OnEpisodeBegin for component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -170,7 +168,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.CollectObservations(sensor);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error collecting observations from component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -183,7 +181,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.OnActionReceived(actionBuffers);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error handling actions in component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -195,7 +193,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.Heuristic(in actionsOut);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error in heuristic for component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -208,7 +206,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.FixedUpdate();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error in FixedUpdate for component {component.GetType().Name}: {e.Message}");
                 }
             }
@@ -219,7 +217,7 @@ namespace TCS.MLAgents.Core {
             foreach (var component in agentComponents) {
                 try {
                     component.OnDestroy();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[MLAgentComposer] Error in OnDestroy for component {component.GetType().Name}: {e.Message}");
                 }
             }

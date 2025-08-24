@@ -1,13 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Episodes {
     /// <summary>
     /// Episode handler that monitors boundary violations and manages episode termination.
     /// Works in conjunction with BoundaryRewardProvider.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class BoundaryHandler : EpisodeHandlerBase {
         [Header("Boundary Settings")]
         [SerializeField] private BoundaryType boundaryType = BoundaryType.Box;

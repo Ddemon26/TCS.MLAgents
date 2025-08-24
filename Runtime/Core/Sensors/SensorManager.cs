@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
@@ -10,7 +8,7 @@ namespace TCS.MLAgents.Sensors {
     /// Manages and coordinates multiple sensor providers for ML agents.
     /// Handles sensor lifecycle, registration, and integration with Unity ML-Agents.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class SensorManager : MonoBehaviour, IMLAgent {
         [Header("Sensor Configuration")]
         [SerializeField] private bool enableSensorSystem = true;
@@ -89,7 +87,7 @@ namespace TCS.MLAgents.Sensors {
                 if (provider.IsActive) {
                     try {
                         provider.OnEpisodeBegin(agentContext);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         LogError($"Error in episode begin for sensor {provider.SensorName}: {e.Message}");
                     }
                 }
@@ -166,7 +164,7 @@ namespace TCS.MLAgents.Sensors {
                     float updateTime = Time.realtimeSinceStartup - startTime;
                     TrackSensorPerformance(provider, updateTime);
                     
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     LogError($"Error updating sensor {provider.SensorName}: {e.Message}");
                 }
             }
@@ -190,7 +188,7 @@ namespace TCS.MLAgents.Sensors {
                         TrackSensorPerformance(provider, updateTime);
                         
                         sensorsUpdated++;
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         LogError($"Error updating sensor {provider.SensorName}: {e.Message}");
                     }
                 }
@@ -225,7 +223,7 @@ namespace TCS.MLAgents.Sensors {
                     sensorUpdateTimes[provider] = 0f;
                     sensorUpdateCounts[provider] = 0;
                     
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     LogError($"Failed to initialize sensor provider {provider.SensorName}: {e.Message}");
                 }
             }
@@ -259,7 +257,7 @@ namespace TCS.MLAgents.Sensors {
             foreach (var provider in sensorProviders) {
                 try {
                     provider.Reset();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     LogError($"Error cleaning up sensor {provider.SensorName}: {e.Message}");
                 }
             }
@@ -317,7 +315,7 @@ namespace TCS.MLAgents.Sensors {
                 if (provider.IsActive) {
                     try {
                         provider.OnSensorEvent(eventName, context, eventData);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         LogError($"Error in sensor event {eventName} for {provider.SensorName}: {e.Message}");
                     }
                 }

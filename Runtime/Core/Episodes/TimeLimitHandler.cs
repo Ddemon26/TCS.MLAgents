@@ -1,12 +1,11 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Episodes {
     /// <summary>
     /// Episode handler that monitors elapsed time and ends episodes when limit is reached.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class TimeLimitHandler : EpisodeHandlerBase {
         [Header("Time Limit Settings")]
         [SerializeField] private bool enableTimeLimit = true;

@@ -77,7 +77,7 @@ namespace TCS.MLAgents.Interfaces {
         
         public virtual bool ValidateProvider(AgentContext context) {
             if (context?.AgentGameObject == null) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] AgentContext or GameObject is null");
+                Debug.LogWarning($"[{ProviderName}] AgentContext or GameObject is null");
                 return false;
             }
             
@@ -114,7 +114,7 @@ namespace TCS.MLAgents.Interfaces {
         /// <param name="expectedCount">Expected number of values for validation</param>
         protected void SafeAddObservations(VectorSensor sensor, float[] values, int expectedCount) {
             if (values == null) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] Null observation values, padding with zeros");
+                Debug.LogWarning($"[{ProviderName}] Null observation values, padding with zeros");
                 for (int i = 0; i < expectedCount; i++) {
                     sensor.AddObservation(0f);
                 }
@@ -122,10 +122,10 @@ namespace TCS.MLAgents.Interfaces {
             }
             
             if (values.Length != expectedCount) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] Expected {expectedCount} observations but got {values.Length}");
+                Debug.LogWarning($"[{ProviderName}] Expected {expectedCount} observations but got {values.Length}");
             }
             
-            int count = UnityEngine.Mathf.Min(values.Length, expectedCount);
+            int count = Mathf.Min(values.Length, expectedCount);
             for (int i = 0; i < count; i++) {
                 sensor.AddObservation(values[i]);
             }
@@ -144,7 +144,7 @@ namespace TCS.MLAgents.Interfaces {
         /// <param name="defaultValue">Default value to use if input is invalid</param>
         protected void SafeAddObservation(VectorSensor sensor, float value, float defaultValue = 0f) {
             if (float.IsNaN(value) || float.IsInfinity(value)) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] Invalid observation value: {value}, using default: {defaultValue}");
+                Debug.LogWarning($"[{ProviderName}] Invalid observation value: {value}, using default: {defaultValue}");
                 sensor.AddObservation(defaultValue);
             } else {
                 sensor.AddObservation(value);

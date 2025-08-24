@@ -1,5 +1,4 @@
 using TCS.MLAgents.Core;
-using UnityEngine;
 
 namespace TCS.MLAgents.Interfaces {
     /// <summary>

@@ -1,14 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
-using System.Collections.Generic;
 
 namespace TCS.MLAgents.Rewards {
     /// <summary>
     /// Provides rewards based on task completion and goal achievement.
     /// Handles various types of objectives and milestone-based rewards.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class TaskCompletionRewardProvider : RewardProviderBase {
         [Header("Task Settings")]
         [SerializeField] TaskType taskType = TaskType.ReachTarget;
@@ -52,13 +50,13 @@ namespace TCS.MLAgents.Rewards {
             Custom             // Custom task logic
         }
         
-        [System.Serializable]
+        [Serializable]
         public class MilestoneConfig {
             public string milestoneName;
             public float progressThreshold; // 0-1 range
             public float rewardValue;
             public bool onlyOnce = true;
-            [System.NonSerialized]
+            [NonSerialized]
             public bool achieved = false;
         }
         
@@ -81,7 +79,7 @@ namespace TCS.MLAgents.Rewards {
                     if (targetObject != null) {
                         currentTarget = targetObject.transform;
                     }
-                } catch (UnityEngine.UnityException) {
+                } catch (UnityException) {
                     // Tag doesn't exist, ignore for now
                     Debug.LogWarning($"[{ProviderName}] Tag '{targetTag}' is not defined. Target will need to be set manually.");
                 }

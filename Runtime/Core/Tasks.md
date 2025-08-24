@@ -157,11 +157,12 @@ Create a composition-based MLAgent library that eliminates unnecessary inheritan
    - [x] Sensor system integration
 
 8. **Communication System**
-   - [ ] Create `IMLCommunicator.cs` interface
-   - [ ] Implement `SideChannelManager.cs`
-   - [ ] Create `LoggingChannel.cs`
-   - [ ] Create `MetricsChannel.cs`
-   - [ ] Python-side communication handlers
+   - [x] Create `IMLCommunicator.cs` interface
+   - [x] Implement `CustomSideChannelManager.cs`
+   - [x] Create `LoggingChannel.cs`
+   - [x] Create `MetricsChannel.cs`
+   - [x] Create `CommandChannel.cs`
+   - [x] Python-side communication handlers example
 
 9. **Decision System**
    - [ ] Create `IDecisionProvider.cs` interface
@@ -230,8 +231,6 @@ Assets/_Damon/TCS.MLAgents/Runtime/Core/
 │   ├── IRewardProvider.cs
 │   ├── IEpisodeHandler.cs
 │   ├── ISensorProvider.cs
-│   ├── IDecisionProvider.cs
-│   ├── IStatisticsProvider.cs
 │   └── IMLCommunicator.cs
 ├── Core/
 │   ├── MLAgentComposer.cs
@@ -262,7 +261,7 @@ Assets/_Damon/TCS.MLAgents/Runtime/Core/
 │   ├── StateResetHandler.cs
 │   └── EnvironmentResetHandler.cs
 ├── Communication/
-│   ├── SideChannelManager.cs
+│   ├── CustomSideChannelManager.cs
 │   ├── LoggingChannel.cs
 │   ├── MetricsChannel.cs
 │   └── CommandChannel.cs

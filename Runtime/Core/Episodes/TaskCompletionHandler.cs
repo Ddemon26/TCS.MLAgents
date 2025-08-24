@@ -1,14 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
-using System.Collections.Generic;
 
 namespace TCS.MLAgents.Episodes {
     /// <summary>
     /// Episode handler that monitors task completion status and manages episode lifecycle based on task outcomes.
     /// Works in conjunction with TaskCompletionRewardProvider.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class TaskCompletionHandler : EpisodeHandlerBase {
         [Header("Task Completion Settings")]
         [SerializeField] private bool endOnTaskSuccess = true;

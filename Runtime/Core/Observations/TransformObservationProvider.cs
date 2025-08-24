@@ -6,7 +6,7 @@ namespace TCS.MLAgents.Observations {
     /// Provides observations based on Transform position, rotation, and scale.
     /// Configurable to include absolute or relative positions, local or world coordinates.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class TransformObservationProvider : ObservationProviderBase {
         [Header("Transform Settings")]
         [SerializeField] Transform targetTransform;

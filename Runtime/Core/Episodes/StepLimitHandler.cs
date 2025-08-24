@@ -1,12 +1,11 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Episodes {
     /// <summary>
     /// Episode handler that monitors step count and ends episodes when limit is reached.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class StepLimitHandler : EpisodeHandlerBase {
         [Header("Step Limit Settings")]
         [SerializeField] private bool enableStepLimit = true;

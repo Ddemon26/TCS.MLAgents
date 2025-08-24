@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace TCS.MLAgents.Core {
     /// <summary>
     /// Shared context and state container for agent components.
     /// Provides a central place for components to share data and communicate.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class AgentContext {
         [Header("Agent Identity")]
         [SerializeField] string agentId;
@@ -42,7 +38,7 @@ namespace TCS.MLAgents.Core {
         
         public AgentContext(GameObject agentGameObject) {
             this.agentGameObject = agentGameObject;
-            this.agentId = agentGameObject.name + "_" + agentGameObject.GetInstanceID();
+            agentId = agentGameObject.name + "_" + agentGameObject.GetInstanceID();
             
             componentCache = new Dictionary<Type, Component>();
             sharedData = new Dictionary<string, object>();

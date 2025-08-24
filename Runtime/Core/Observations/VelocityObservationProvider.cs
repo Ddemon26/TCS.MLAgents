@@ -6,7 +6,7 @@ namespace TCS.MLAgents.Observations {
     /// Provides observations based on Rigidbody velocity and angular velocity.
     /// Supports both linear and angular velocity with optional normalization and smoothing.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class VelocityObservationProvider : ObservationProviderBase {
         [Header("Velocity Settings")]
         [SerializeField] Rigidbody targetRigidbody;
@@ -232,10 +232,10 @@ namespace TCS.MLAgents.Observations {
         
         private void ClearSmoothing() {
             if (linearVelocityBuffer != null) {
-                System.Array.Clear(linearVelocityBuffer, 0, linearVelocityBuffer.Length);
+                Array.Clear(linearVelocityBuffer, 0, linearVelocityBuffer.Length);
             }
             if (angularVelocityBuffer != null) {
-                System.Array.Clear(angularVelocityBuffer, 0, angularVelocityBuffer.Length);
+                Array.Clear(angularVelocityBuffer, 0, angularVelocityBuffer.Length);
             }
             bufferIndex = 0;
             bufferFilled = false;

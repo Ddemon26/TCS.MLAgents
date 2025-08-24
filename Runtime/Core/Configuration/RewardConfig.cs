@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace TCS.MLAgents.Configuration {
     /// <summary>
     /// ScriptableObject configuration for reward system settings.
@@ -49,7 +46,7 @@ namespace TCS.MLAgents.Configuration {
         public IReadOnlyList<string> RegisteredEventNames => registeredEventNames.AsReadOnly();
         public bool EnableEventLogging => enableEventLogging;
         
-        [System.Serializable]
+        [Serializable]
         public class RewardProviderConfig {
             [Header("Provider Identity")]
             public string providerName = "Reward Provider";
@@ -93,7 +90,7 @@ namespace TCS.MLAgents.Configuration {
             }
         }
         
-        [System.Serializable]
+        [Serializable]
         public class ParameterConfig {
             public string name;
             public ParameterType type;

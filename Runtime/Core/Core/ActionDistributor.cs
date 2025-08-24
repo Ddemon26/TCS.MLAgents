@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using CoreActionReceiver = TCS.MLAgents.Interfaces.IActionReceiver;
@@ -80,7 +78,7 @@ namespace TCS.MLAgents.Core {
                 if (receiver.IsActive) {
                     try {
                         receiver.OnEpisodeBegin(context);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[ActionDistributor] Error in OnEpisodeBegin for receiver {receiver.ReceiverName}: {e.Message}");
                     }
                 }
@@ -134,7 +132,7 @@ namespace TCS.MLAgents.Core {
                     if (debugLogging) {
                         Debug.Log($"[ActionDistributor] Distributed actions to {receiver.ReceiverName}: {allocation}");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[ActionDistributor] Error distributing actions to {receiver.ReceiverName}: {e.Message}");
                 }
             }
@@ -160,7 +158,7 @@ namespace TCS.MLAgents.Core {
                 try {
                     receiver.ProvideHeuristicActions(continuousActions, discreteActions, 
                         allocation.ContinuousStartIndex, allocation.DiscreteStartIndex, context);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[ActionDistributor] Error getting heuristic from {receiver.ReceiverName}: {e.Message}");
                 }
             }
@@ -185,7 +183,7 @@ namespace TCS.MLAgents.Core {
                 if (receiver.IsActive) {
                     try {
                         receiver.FixedUpdate(context);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[ActionDistributor] Error in FixedUpdate for receiver {receiver.ReceiverName}: {e.Message}");
                     }
                 }
@@ -251,7 +249,7 @@ namespace TCS.MLAgents.Core {
                     if (!receiver.ValidateReceiver(context)) {
                         Debug.LogWarning($"[ActionDistributor] Receiver {receiver.ReceiverName} failed validation");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[ActionDistributor] Error initializing receiver {receiver.ReceiverName}: {e.Message}");
                 }
             }

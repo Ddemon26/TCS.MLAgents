@@ -5,7 +5,7 @@ namespace TCS.MLAgents.Actions {
     /// Receives and processes movement actions from the ML agent.
     /// Supports various movement modes including force-based, velocity-based, and position-based movement.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class MovementActionReceiver : ActionReceiverBase {
         [Header("Movement Settings")]
         [SerializeField] Rigidbody targetRigidbody;

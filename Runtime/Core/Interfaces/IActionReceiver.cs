@@ -122,7 +122,7 @@ namespace TCS.MLAgents.Interfaces {
         
         public virtual bool ValidateReceiver(AgentContext context) {
             if (context?.AgentGameObject == null) {
-                UnityEngine.Debug.LogWarning($"[{ReceiverName}] AgentContext or GameObject is null");
+                Debug.LogWarning($"[{ReceiverName}] AgentContext or GameObject is null");
                 return false;
             }
             
@@ -174,16 +174,16 @@ namespace TCS.MLAgents.Interfaces {
         protected float SafeGetContinuousAction(float[] actions, int index, float defaultValue = 0f) {
             if (actions == null || index < 0 || index >= actions.Length) {
                 if (actions == null) {
-                    UnityEngine.Debug.LogWarning($"[{ReceiverName}] Actions array is null");
+                    Debug.LogWarning($"[{ReceiverName}] Actions array is null");
                 } else {
-                    UnityEngine.Debug.LogWarning($"[{ReceiverName}] Action index {index} out of bounds (length: {actions.Length})");
+                    Debug.LogWarning($"[{ReceiverName}] Action index {index} out of bounds (length: {actions.Length})");
                 }
                 return defaultValue;
             }
             
             float value = actions[index];
             if (float.IsNaN(value) || float.IsInfinity(value)) {
-                UnityEngine.Debug.LogWarning($"[{ReceiverName}] Invalid action value at index {index}: {value}");
+                Debug.LogWarning($"[{ReceiverName}] Invalid action value at index {index}: {value}");
                 return defaultValue;
             }
             
@@ -200,9 +200,9 @@ namespace TCS.MLAgents.Interfaces {
         protected int SafeGetDiscreteAction(int[] actions, int index, int defaultValue = 0) {
             if (actions == null || index < 0 || index >= actions.Length) {
                 if (actions == null) {
-                    UnityEngine.Debug.LogWarning($"[{ReceiverName}] Actions array is null");
+                    Debug.LogWarning($"[{ReceiverName}] Actions array is null");
                 } else {
-                    UnityEngine.Debug.LogWarning($"[{ReceiverName}] Action index {index} out of bounds (length: {actions.Length})");
+                    Debug.LogWarning($"[{ReceiverName}] Action index {index} out of bounds (length: {actions.Length})");
                 }
                 return defaultValue;
             }
@@ -218,12 +218,12 @@ namespace TCS.MLAgents.Interfaces {
         /// <param name="value">Value to write</param>
         protected void SafeSetContinuousAction(float[] actions, int index, float value) {
             if (actions == null || index < 0 || index >= actions.Length) {
-                UnityEngine.Debug.LogWarning($"[{ReceiverName}] Cannot set action at index {index}");
+                Debug.LogWarning($"[{ReceiverName}] Cannot set action at index {index}");
                 return;
             }
             
             if (float.IsNaN(value) || float.IsInfinity(value)) {
-                UnityEngine.Debug.LogWarning($"[{ReceiverName}] Attempting to set invalid action value: {value}");
+                Debug.LogWarning($"[{ReceiverName}] Attempting to set invalid action value: {value}");
                 value = 0f;
             }
             
@@ -238,7 +238,7 @@ namespace TCS.MLAgents.Interfaces {
         /// <param name="value">Value to write</param>
         protected void SafeSetDiscreteAction(int[] actions, int index, int value) {
             if (actions == null || index < 0 || index >= actions.Length) {
-                UnityEngine.Debug.LogWarning($"[{ReceiverName}] Cannot set action at index {index}");
+                Debug.LogWarning($"[{ReceiverName}] Cannot set action at index {index}");
                 return;
             }
             
@@ -253,7 +253,7 @@ namespace TCS.MLAgents.Interfaces {
         /// <param name="max">Maximum value</param>
         /// <returns>Clamped value</returns>
         protected float ClampAction(float value, float min = -1f, float max = 1f) {
-            return UnityEngine.Mathf.Clamp(value, min, max);
+            return Mathf.Clamp(value, min, max);
         }
     }
 }

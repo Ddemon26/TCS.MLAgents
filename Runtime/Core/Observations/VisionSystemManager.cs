@@ -1,14 +1,9 @@
-using System.Collections.Generic;
-using UnityEngine;
-using TCS.MLAgents.Core;
-using TCS.MLAgents.Interfaces;
-
 namespace TCS.MLAgents.Observations {
     /// <summary>
     /// High-level manager for vision systems with advanced performance optimization,
     /// multi-agent coordination, and centralized vision processing.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class VisionSystemManager : MonoBehaviour {
         [Header("System Configuration")]
         [SerializeField] private bool enableVisionSystem = true;
@@ -45,7 +40,7 @@ namespace TCS.MLAgents.Observations {
             Aggressive      // Maximum optimization, may reduce quality
         }
         
-        [System.Serializable]
+        [Serializable]
         public class VisionLODLevel {
             [SerializeField] public string levelName;
             [SerializeField] public float minDistance = 0f;
@@ -70,7 +65,7 @@ namespace TCS.MLAgents.Observations {
         private float raycastBudget = 100f;
         
         // Optimization state
-        private Queue<System.Action> deferredRaycasts = new Queue<System.Action>();
+        private Queue<Action> deferredRaycasts = new Queue<Action>();
         private Dictionary<string, object> cachedResults = new Dictionary<string, object>();
         private float lastCacheClear = 0f;
         Camera m_camera;
@@ -176,7 +171,7 @@ namespace TCS.MLAgents.Observations {
             totalRaycastsThisFrame++;
         }
         
-        public void DeferRaycast(System.Action raycastAction) {
+        public void DeferRaycast(Action raycastAction) {
             deferredRaycasts.Enqueue(raycastAction);
         }
         

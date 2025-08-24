@@ -1,13 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Rewards {
     /// <summary>
     /// Provides rewards and penalties based on boundary violations.
     /// Monitors agent position relative to defined boundaries.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class BoundaryRewardProvider : RewardProviderBase {
         [Header("Boundary Definition")]
         [SerializeField] BoundaryType boundaryType = BoundaryType.Box;

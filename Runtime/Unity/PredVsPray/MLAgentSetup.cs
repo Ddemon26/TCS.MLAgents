@@ -2,7 +2,7 @@ using Unity.Barracuda;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 namespace TCS.MLAgents.PredVsPray {
-    [System.Serializable]
+    [Serializable]
     public class MLAgentSetupConfig {
         [Header( "Agent Configuration" )]
         public string behaviorName = "PredatorAgent";

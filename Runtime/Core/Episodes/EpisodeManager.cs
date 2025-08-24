@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
 using TCS.MLAgents.Configuration;
@@ -10,7 +8,7 @@ namespace TCS.MLAgents.Episodes {
     /// Manages episode lifecycle and coordinates multiple episode handlers.
     /// Handles episode initialization, termination conditions, and state transitions.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class EpisodeManager : MonoBehaviour, IMLAgent {
         [Header("Episode Settings")]
         [SerializeField] private bool autoStartEpisodes = true;
@@ -171,7 +169,7 @@ namespace TCS.MLAgents.Episodes {
             foreach (var handler in episodeHandlers) {
                 try {
                     handler.Initialize(context);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Failed to initialize handler {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -179,7 +177,7 @@ namespace TCS.MLAgents.Episodes {
         
         private void InitializeEndReasonCounts() {
             endReasonCounts.Clear();
-            foreach (EpisodeEndReason reason in System.Enum.GetValues(typeof(EpisodeEndReason))) {
+            foreach (EpisodeEndReason reason in Enum.GetValues(typeof(EpisodeEndReason))) {
                 endReasonCounts[reason] = 0;
             }
         }
@@ -209,7 +207,7 @@ namespace TCS.MLAgents.Episodes {
                         RequestEpisodeStart();
                         break;
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error checking start condition for {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -224,7 +222,7 @@ namespace TCS.MLAgents.Episodes {
                         RequestEpisodeEnd(EpisodeEndReason.Success);
                         break;
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error checking end condition for {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -251,7 +249,7 @@ namespace TCS.MLAgents.Episodes {
                 
                 try {
                     handler.OnEpisodeUpdate(context, deltaTime);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error updating handler {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -279,7 +277,7 @@ namespace TCS.MLAgents.Episodes {
                 
                 try {
                     handler.OnEpisodeBegin(context);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error starting episode for handler {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -307,7 +305,7 @@ namespace TCS.MLAgents.Episodes {
                 
                 try {
                     handler.OnEpisodeEnd(context, pendingEndReason);
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error ending episode for handler {handler.HandlerName}: {e.Message}");
                 }
             }
@@ -346,7 +344,7 @@ namespace TCS.MLAgents.Episodes {
             foreach (var handler in episodeHandlers) {
                 try {
                     handler.Reset();
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[EpisodeManager] Error resetting handler {handler.HandlerName}: {e.Message}");
                 }
             }

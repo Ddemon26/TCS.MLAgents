@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
@@ -488,7 +486,7 @@ namespace TCS.MLAgents.Sensors {
             this.includeDistance = includeDistance;
             this.includeAngle = includeAngle;
             this.includeNormal = includeNormal;
-            this.sensorTransform = transform;
+            sensorTransform = transform;
             
             CalculateObservationSize();
             observations = new float[observationSize];

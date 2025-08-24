@@ -1,13 +1,12 @@
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 
 namespace TCS.MLAgents.Rewards {
     /// <summary>
     /// Provides time-based rewards and penalties.
     /// Can provide constant time penalties or time-based bonuses.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class TimeRewardProvider : RewardProviderBase {
         [Header("Time Penalty Settings")]
         [SerializeField] bool enableTimePenalty = true;

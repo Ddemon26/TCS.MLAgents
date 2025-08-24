@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-using TCS.MLAgents.Interfaces;
-
 namespace TCS.MLAgents.Configuration {
     /// <summary>
     /// ScriptableObject configuration for episode management settings.
@@ -40,7 +36,7 @@ namespace TCS.MLAgents.Configuration {
         [SerializeField] public bool saveStatsToFile = false;
         [SerializeField] public string statsFilePath = "episode_stats.json";
         
-        [System.Serializable]
+        [Serializable]
         public class SuccessCondition {
             [SerializeField] public string conditionName;
             [SerializeField] public SuccessType successType = SuccessType.ReachTarget;
@@ -52,7 +48,7 @@ namespace TCS.MLAgents.Configuration {
             [SerializeField] public int intValue = 1;
         }
         
-        [System.Serializable]
+        [Serializable]
         public class FailureCondition {
             [SerializeField] public string conditionName;
             [SerializeField] public FailureType failureType = FailureType.BoundaryViolation;
@@ -63,7 +59,7 @@ namespace TCS.MLAgents.Configuration {
             [SerializeField] public int intValue = 0;
         }
         
-        [System.Serializable]
+        [Serializable]
         public class EpisodeHandlerConfig {
             [SerializeField] public string handlerName;
             [SerializeField] public bool isActive = true;

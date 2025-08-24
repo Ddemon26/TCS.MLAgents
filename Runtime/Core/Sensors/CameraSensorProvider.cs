@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;

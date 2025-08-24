@@ -105,12 +105,12 @@ namespace TCS.MLAgents.Interfaces {
         
         public virtual bool ValidateProvider(AgentContext context) {
             if (context?.AgentGameObject == null) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] AgentContext or GameObject is null");
+                Debug.LogWarning($"[{ProviderName}] AgentContext or GameObject is null");
                 return false;
             }
             
             if (rewardWeight == 0f) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] Reward weight is zero, provider will have no effect");
+                Debug.LogWarning($"[{ProviderName}] Reward weight is zero, provider will have no effect");
             }
             
             return OnValidate(context);
@@ -172,11 +172,11 @@ namespace TCS.MLAgents.Interfaces {
             totalRewardGiven += weightedReward;
             
             // Clamp to reasonable bounds to prevent extreme rewards
-            weightedReward = UnityEngine.Mathf.Clamp(weightedReward, -100f, 100f);
+            weightedReward = Mathf.Clamp(weightedReward, -100f, 100f);
             
             // Check for NaN or Infinity
             if (float.IsNaN(weightedReward) || float.IsInfinity(weightedReward)) {
-                UnityEngine.Debug.LogWarning($"[{ProviderName}] Invalid reward calculated: {weightedReward}, returning 0");
+                Debug.LogWarning($"[{ProviderName}] Invalid reward calculated: {weightedReward}, returning 0");
                 return 0f;
             }
             
@@ -186,38 +186,38 @@ namespace TCS.MLAgents.Interfaces {
         /// <summary>
         /// Helper method to safely get a component with caching.
         /// </summary>
-        protected T SafeGetComponent<T>(AgentContext context) where T : UnityEngine.Component {
+        protected T SafeGetComponent<T>(AgentContext context) where T : Component {
             return context.GetComponent<T>();
         }
         
         /// <summary>
         /// Helper method to calculate distance between two transforms.
         /// </summary>
-        protected float GetDistance(UnityEngine.Transform a, UnityEngine.Transform b) {
+        protected float GetDistance(Transform a, Transform b) {
             if (a == null || b == null) return float.MaxValue;
-            return UnityEngine.Vector3.Distance(a.position, b.position);
+            return Vector3.Distance(a.position, b.position);
         }
         
         /// <summary>
         /// Helper method to calculate normalized distance (0 = at target, 1 = at max distance).
         /// </summary>
-        protected float GetNormalizedDistance(UnityEngine.Transform a, UnityEngine.Transform b, float maxDistance) {
+        protected float GetNormalizedDistance(Transform a, Transform b, float maxDistance) {
             if (maxDistance <= 0f) return 0f;
             float distance = GetDistance(a, b);
-            return UnityEngine.Mathf.Clamp01(distance / maxDistance);
+            return Mathf.Clamp01(distance / maxDistance);
         }
         
         /// <summary>
         /// Helper method to calculate velocity magnitude.
         /// </summary>
-        protected float GetVelocityMagnitude(UnityEngine.Rigidbody rb) {
+        protected float GetVelocityMagnitude(Rigidbody rb) {
             return rb != null ? rb.linearVelocity.magnitude : 0f;
         }
         
         /// <summary>
         /// Helper method to check if agent is within bounds.
         /// </summary>
-        protected bool IsWithinBounds(UnityEngine.Vector3 position, UnityEngine.Vector3 minBounds, UnityEngine.Vector3 maxBounds) {
+        protected bool IsWithinBounds(Vector3 position, Vector3 minBounds, Vector3 maxBounds) {
             return position.x >= minBounds.x && position.x <= maxBounds.x &&
                    position.y >= minBounds.y && position.y <= maxBounds.y &&
                    position.z >= minBounds.z && position.z <= maxBounds.z;

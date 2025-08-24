@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using TCS.MLAgents.Core;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 
 namespace TCS.MLAgents.Observations {
@@ -9,7 +7,7 @@ namespace TCS.MLAgents.Observations {
     /// Advanced vision system for ML agents using configurable raycast-based perception.
     /// Provides flexible vision configuration with multiple detection modes and optimizations.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class VisionObservationProvider : ObservationProviderBase {
         [Header("Vision Configuration")]
         [SerializeField] private VisionMode visionMode = VisionMode.Raycast;
@@ -60,7 +58,7 @@ namespace TCS.MLAgents.Observations {
             Custom          // Custom vision implementation
         }
         
-        [System.Serializable]
+        [Serializable]
         public class VisionTag {
             public string tagName;
             public float importance = 1f;

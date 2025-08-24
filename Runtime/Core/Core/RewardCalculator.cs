@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using TCS.MLAgents.Interfaces;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 
 namespace TCS.MLAgents.Core {
@@ -72,7 +70,7 @@ namespace TCS.MLAgents.Core {
                 if (provider.IsActive) {
                     try {
                         provider.OnEpisodeBegin(context);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[RewardCalculator] Error in OnEpisodeBegin for provider {provider.ProviderName}: {e.Message}");
                     }
                 }
@@ -141,7 +139,7 @@ namespace TCS.MLAgents.Core {
                     if (debugLogging && Mathf.Abs(providerReward) > 0.001f) {
                         Debug.Log($"[RewardCalculator] {provider.ProviderName} contributed: {providerReward:F3}");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[RewardCalculator] Error calculating reward from {provider.ProviderName}: {e.Message}");
                     providerContributions[provider] = 0f;
                 }
@@ -223,7 +221,7 @@ namespace TCS.MLAgents.Core {
                     if (!provider.ValidateProvider(context)) {
                         Debug.LogWarning($"[RewardCalculator] Provider {provider.ProviderName} failed validation");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[RewardCalculator] Error initializing provider {provider.ProviderName}: {e.Message}");
                 }
             }
@@ -287,7 +285,7 @@ namespace TCS.MLAgents.Core {
                 if (provider.IsActive) {
                     try {
                         provider.OnRewardEvent(eventName, context, eventData);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[RewardCalculator] Error in reward event for {provider.ProviderName}: {e.Message}");
                     }
                 }

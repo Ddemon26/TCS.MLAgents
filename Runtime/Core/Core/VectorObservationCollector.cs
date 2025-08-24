@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using TCS.MLAgents.Interfaces;
 using TCS.MLAgents.Utilities;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 
 namespace TCS.MLAgents.Core {
@@ -59,7 +57,7 @@ namespace TCS.MLAgents.Core {
                 if (provider.IsActive) {
                     try {
                         provider.OnEpisodeBegin(context);
-                    } catch (System.Exception e) {
+                    } catch (Exception e) {
                         Debug.LogError($"[VectorObservationCollector] Error in OnEpisodeBegin for provider {provider.ProviderName}: {e.Message}");
                     }
                 }
@@ -93,7 +91,7 @@ namespace TCS.MLAgents.Core {
                     if (debugLogging) {
                         Debug.Log($"[VectorObservationCollector] {provider.ProviderName} added {provider.ObservationSize} observations");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[VectorObservationCollector] Error collecting observations from {provider.ProviderName}: {e.Message}");
                     
                     // Add zeros for failed provider to maintain observation space consistency
@@ -178,7 +176,7 @@ namespace TCS.MLAgents.Core {
                     } else {
                         Debug.LogWarning($"[VectorObservationCollector] Provider {provider.ProviderName} failed validation");
                     }
-                } catch (System.Exception e) {
+                } catch (Exception e) {
                     Debug.LogError($"[VectorObservationCollector] Error initializing provider {provider.ProviderName}: {e.Message}");
                 }
             }

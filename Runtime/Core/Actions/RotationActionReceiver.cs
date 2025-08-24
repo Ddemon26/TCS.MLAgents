@@ -5,7 +5,7 @@ namespace TCS.MLAgents.Actions {
     /// Receives and processes rotation actions from the ML agent.
     /// Supports various rotation modes including torque-based, angular velocity, and direct rotation.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class RotationActionReceiver : ActionReceiverBase {
         [Header("Rotation Settings")]
         [SerializeField] Rigidbody targetRigidbody;

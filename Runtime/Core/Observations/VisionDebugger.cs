@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
 using TCS.MLAgents.Core;
 using Random = UnityEngine.Random;
 
@@ -8,7 +6,7 @@ namespace TCS.MLAgents.Observations {
     /// Advanced debugging and visualization tools for VisionObservationProvider.
     /// Provides real-time vision analysis, performance monitoring, and debug UI.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class VisionDebugger {
         [Header("Debug UI Settings")]
         [SerializeField] private bool showDebugUI = true;
@@ -186,7 +184,7 @@ namespace TCS.MLAgents.Observations {
                 frameTime = Time.deltaTime,
                 raycastCount = visionProvider?.GetTotalRaycastsPerformed() ?? 0,
                 averageRaycastTime = visionProvider?.GetAverageRaycastTime() ?? 0f,
-                memoryUsage = trackMemoryUsage ? System.GC.GetTotalMemory(false) / (1024f * 1024f) : 0f,
+                memoryUsage = trackMemoryUsage ? GC.GetTotalMemory(false) / (1024f * 1024f) : 0f,
                 hitCount = visionProvider?.GetHitCount() ?? 0,
                 updateFrequency = 1f / (visionProvider?.GetDebugInfo().Contains("Frequency=") == true ? 
                     ParseFrequencyFromDebugInfo(visionProvider.GetDebugInfo()) : 0.1f)

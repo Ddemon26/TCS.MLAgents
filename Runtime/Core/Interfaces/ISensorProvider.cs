@@ -1,5 +1,4 @@
 using TCS.MLAgents.Core;
-using UnityEngine;
 using Unity.MLAgents.Sensors;
 
 namespace TCS.MLAgents.Interfaces {
@@ -117,7 +116,7 @@ namespace TCS.MLAgents.Interfaces {
             
             try {
                 OnUpdateSensor(context, deltaTime);
-            } catch (System.Exception e) {
+            } catch (Exception e) {
                 Debug.LogError($"[{SensorName}] Error updating sensor: {e.Message}");
             }
         }
