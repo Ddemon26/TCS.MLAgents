@@ -1,8 +1,6 @@
 using Unity.Barracuda;
-using UnityEngine;
 using Unity.MLAgents.Policies;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [CreateAssetMenu(menuName = "ML Agents/Training Profile", fileName = "TrainingProfile")]
     public class TrainingProfile : ScriptableObject {
         [Header("Training Settings")]

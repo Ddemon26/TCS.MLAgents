@@ -1,8 +1,5 @@
 ﻿using Unity.Barracuda;
-using UnityEngine;
-using UnityEngine.Serialization;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [CreateAssetMenu( menuName = "Create MLBrain", fileName = "MLBrain", order = 0 )] 
     public class MlBrain : NNModel {
         [SerializeField] public MlBrainData m_modelData;

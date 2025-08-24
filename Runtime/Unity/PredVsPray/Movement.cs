@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     public class Movement : MonoBehaviour {
         [SerializeField] float speed = 5f;
         [SerializeField] float rotationSpeed = 180f;

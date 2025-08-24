@@ -1,9 +1,7 @@
 using Unity.Barracuda;
-using UnityEngine;
-using Unity.MLAgents.Policies;
 using Unity.MLAgents.Actuators;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+using Unity.MLAgents.Policies;
+namespace TCS.MLAgents.PredVsPray {
     [System.Serializable]
     public class MLAgentSetupConfig {
         [Header( "Agent Configuration" )]

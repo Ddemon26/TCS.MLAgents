@@ -1,10 +1,9 @@
-using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     public class BoundarySystem : MonoBehaviour {
-        [SerializeField] Vector3 minBounds = new Vector3(-4f, 0f, -4f);
-        [SerializeField] Vector3 maxBounds = new Vector3(4f, 1f, 4f);
+        [SerializeField] Vector3 minBounds = new(-4f, 0f, -4f);
+        [SerializeField] Vector3 maxBounds = new(4f, 1f, 4f);
         [SerializeField] bool bounceOnHit = false;
         [SerializeField] bool teleportOnExit = false;
         

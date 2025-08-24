@@ -1,6 +1,6 @@
 using Random = UnityEngine.Random;
 
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     /// <summary>
     ///     Simple prey behaviour that moves randomly within bounds and respawns when caught.
     /// </summary>

@@ -1,7 +1,6 @@
-using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [RequireComponent(typeof(Movement))]
     [RequireComponent(typeof(BoundarySystem))]
     public class PreyController : MonoBehaviour {

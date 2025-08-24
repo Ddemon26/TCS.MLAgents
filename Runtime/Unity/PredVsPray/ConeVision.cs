@@ -1,7 +1,4 @@
-using UnityEngine;
-using System.Collections.Generic;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     public class ConeVision : MonoBehaviour {
         [SerializeField] float viewDistance = 10f;
         [SerializeField] float viewAngle = 45f;

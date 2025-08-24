@@ -1,12 +1,11 @@
-using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [CreateAssetMenu(menuName = "ML Simulation/Simulation Config", fileName = "SimulationConfig")]
     public class SimulationConfig : ScriptableObject {
         [Header("Arena Settings")]
-        public Vector3 arenaMinBounds = new Vector3(-4f, 0f, -4f);
-        public Vector3 arenaMaxBounds = new Vector3(4f, 1f, 4f);
+        public Vector3 arenaMinBounds = new(-4f, 0f, -4f);
+        public Vector3 arenaMaxBounds = new(4f, 1f, 4f);
         
         [Header("Agent Settings")]
         public float predatorSpeed = 5f;

@@ -1,11 +1,10 @@
-
-using TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity;
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.SideChannels;
 using Random = UnityEngine.Random;
+
+namespace TCS.MLAgents.PredVsPray;
 
 /// <summary>
 /// A predator agent that learns to chase and catch a prey in a 2D arena.

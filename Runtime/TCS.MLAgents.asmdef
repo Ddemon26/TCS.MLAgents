@@ -1,6 +1,5 @@
 {
     "name": "TCS.MLAgents",
-    "rootNamespace": "TCS.MLAgents",
     "references": [
         "Unity.Barracuda",
         "Unity.ML-Agents"

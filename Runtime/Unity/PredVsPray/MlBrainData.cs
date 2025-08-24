@@ -1,8 +1,6 @@
-﻿using Unity.Barracuda;
-using UnityEngine;
-using System.IO;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+﻿using System.IO;
+using Unity.Barracuda;
+namespace TCS.MLAgents.PredVsPray {
     [CreateAssetMenu( menuName = "Create MlBrainData", fileName = "MlBrainData", order = 0 )] 
     public class MlBrainData : NNModelData {
         public byte[] Data {

@@ -1,6 +1,5 @@
 using Unity.MLAgents.SideChannels;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     /// <summary>
     ///     A simple side channel for sending and receiving log messages. Uses a fixed GUID so that Unity and Python match.
     /// </summary>

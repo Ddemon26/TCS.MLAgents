@@ -1,7 +1,5 @@
-using UnityEngine;
 using Unity.MLAgents;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     public class RewardSystem : MonoBehaviour {
         [SerializeField] float catchReward = 1.0f;
         [SerializeField] float boundaryPenalty = -1.0f;

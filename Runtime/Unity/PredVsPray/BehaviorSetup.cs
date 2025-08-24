@@ -1,8 +1,6 @@
-using UnityEngine;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [RequireComponent(typeof(BehaviorParameters))]
     public class BehaviorSetup : MonoBehaviour {
         [SerializeField] string behaviorName = "PredatorBehavior";

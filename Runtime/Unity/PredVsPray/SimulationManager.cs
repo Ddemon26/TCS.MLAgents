@@ -1,7 +1,6 @@
-using UnityEngine;
+using System.Linq;
 using Unity.MLAgents;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     public class SimulationManager : MonoBehaviour {
         [SerializeField] SimulationConfig config;
         [SerializeField] PredatorController[] predators;
@@ -20,11 +19,13 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         
         void FindSimulationEntities() {
             if (predators == null || predators.Length == 0) {
-                predators = FindObjectsOfType<PredatorController>();
+                predators = new[] {
+                    FindFirstObjectByType<PredatorController>(FindObjectsInactive.Include),
+                };
             }
-            
+
             if (prey == null || prey.Length == 0) {
-                prey = FindObjectsOfType<PreyController>();
+                prey = FindObjectsByType<PreyController>(FindObjectsSortMode.None).ToArray();
             }
         }
         
@@ -42,7 +43,7 @@ namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
         
         void SetupPredators() {
             foreach (var predator in predators) {
-                if (predator == null) continue;
+                if (!predator) continue;
                 
                 if (predator.TryGetComponent<Movement>(out var movement)) {
                     movement.Speed = config.predatorSpeed;

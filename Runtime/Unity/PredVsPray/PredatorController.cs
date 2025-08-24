@@ -1,10 +1,8 @@
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.SideChannels;
-
-namespace TCS.MLAgents._Damon.TCS.MLAgents.Runtime.Unity {
+namespace TCS.MLAgents.PredVsPray {
     [RequireComponent(typeof(Movement))]
     [RequireComponent(typeof(BoundarySystem))]
     [RequireComponent(typeof(RewardSystem))]
