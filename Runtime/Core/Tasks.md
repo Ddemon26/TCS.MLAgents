@@ -178,10 +178,10 @@ Create a composition-based MLAgent library that eliminates unnecessary inheritan
     - [ ] Editor tools for behavior configuration
 
 11. **Statistics & Monitoring**
-    - [ ] Create `IStatisticsProvider.cs` interface
-    - [ ] Implement `StatisticsCollector.cs`
-    - [ ] Create `PerformanceMonitor.cs`
-    - [ ] Statistics visualization tools
+    - [x] Create `IStatisticsProvider.cs` interface
+    - [x] Implement `StatisticsCollector.cs`
+    - [x] Create `PerformanceMonitor.cs`
+    - [x] Statistics visualization tools
 
 12. **Testing & Validation**
     - [ ] Unit tests for all core components
@@ -273,5 +273,5 @@ Assets/_Damon/TCS.MLAgents/Runtime/Core/
     ├── ActionBuffer.cs
     ├── StatisticsCollector.cs
     ├── PerformanceMonitor.cs
-    └── BehaviorApplicator.cs
+    └── StatisticsVisualizer.cs
 ```
