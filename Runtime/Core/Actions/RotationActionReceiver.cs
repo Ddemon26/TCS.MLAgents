@@ -6,7 +6,7 @@ namespace TCS.MLAgents.Actions {
     /// Supports various rotation modes including torque-based, angular velocity, and direct rotation.
     /// </summary>
     [Serializable]
-    public class RotationActionReceiver : ActionReceiverBase {
+    public class RotationActionReceiver : ActionHandlerBase {
         [Header("Rotation Settings")]
         [SerializeField] Rigidbody targetRigidbody;
         [SerializeField] Transform targetTransform;

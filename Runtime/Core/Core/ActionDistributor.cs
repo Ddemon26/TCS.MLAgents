@@ -2,7 +2,7 @@ using System.Linq;
 using TCS.MLAgents.Interfaces;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using CoreActionReceiver = TCS.MLAgents.Interfaces.IActionReceiver;
+using CoreActionReceiver = TCS.MLAgents.Interfaces.IActionHandler;
 
 namespace TCS.MLAgents.Core {
     /// <summary>

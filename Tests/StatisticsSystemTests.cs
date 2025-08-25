@@ -26,7 +26,7 @@ namespace TCS.MLAgents.Tests {
                 collector.Initialize(agentContext);
                 
                 // Create mock statistics provider
-                var mockProvider = new MockStatisticsProvider("mock", 50);
+                var mockProvider = new StatsTestProvider("mock", 50);
                 collector.AddStatisticsProvider(mockProvider);
                 
                 // Test provider management
@@ -170,13 +170,13 @@ namespace TCS.MLAgents.Tests {
     /// <summary>
     /// Mock statistics provider for testing
     /// </summary>
-    public class MockStatisticsProvider : IStatisticsProvider {
+    public class StatsTestProvider : IStatisticsProvider {
         private string m_Id;
         private int m_Priority;
         private bool m_IsActive;
         private Dictionary<string, float> m_Statistics;
         
-        public MockStatisticsProvider(string id, int priority) {
+        public StatsTestProvider(string id, int priority) {
             m_Id = id;
             m_Priority = priority;
             m_IsActive = true;
@@ -224,7 +224,7 @@ namespace TCS.MLAgents.Tests {
         }
         
         public string GetDebugInfo() {
-            return $"MockStatisticsProvider[{m_Id}] - Active: {m_IsActive}";
+            return $"StatsTestProvider[{m_Id}] - Active: {m_IsActive}";
         }
     }
 }

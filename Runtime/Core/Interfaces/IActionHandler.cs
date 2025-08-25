@@ -1,10 +1,10 @@
 using TCS.MLAgents.Core;
 namespace TCS.MLAgents.Interfaces {
     /// <summary>
-    /// Interface for components that receive and process actions from the ML agent.
-    /// Action receivers handle specific types of actions (movement, rotation, discrete choices, etc.).
+    /// Interface for components that handle and process actions from the ML agent.
+    /// Action handlers manage specific types of actions (movement, rotation, discrete choices, etc.).
     /// </summary>
-    public interface IActionReceiver {
+    public interface IActionHandler {
         /// <summary>
         /// The number of continuous actions this receiver expects to consume.
         /// </summary>
@@ -95,10 +95,10 @@ namespace TCS.MLAgents.Interfaces {
     }
     
     /// <summary>
-    /// Base implementation of IActionReceiver with common functionality.
+    /// Base implementation of IActionHandler with common functionality.
     /// Provides standard implementations for name, active state, and validation.
     /// </summary>
-    public abstract class ActionReceiverBase : IActionReceiver {
+    public abstract class ActionHandlerBase : IActionHandler {
         [SerializeField] protected string receiverName;
         [SerializeField] protected bool isActive = true;
         [SerializeField] protected int priority = 0;

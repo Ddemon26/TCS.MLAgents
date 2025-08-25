@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEditor;
 using TCS.MLAgents.Configuration;
 
-namespace TCS.MLAgents.Editor {
+namespace TCS.MLAgents.Editor
+{
     /// <summary>
     /// Custom editor for MLBehaviorConfig ScriptableObject
     /// </summary>
     [CustomEditor(typeof(MLBehaviorConfig))]
-    public class MLBehaviorConfigEditor : UnityEditor.Editor {
+    public class MLBehaviorConfigEditor : UnityEditor.Editor
+    {
         private SerializedProperty m_BehaviorName;
         private SerializedProperty m_Description;
         private SerializedProperty m_BehaviorType;
@@ -57,7 +59,8 @@ namespace TCS.MLAgents.Editor {
         private SerializedProperty m_EnableActionMasking;
         private SerializedProperty m_ComponentsToExclude;
         
-        private void OnEnable() {
+        private void OnEnable()
+        {
             m_BehaviorName = serializedObject.FindProperty("m_BehaviorName");
             m_Description = serializedObject.FindProperty("m_Description");
             m_BehaviorType = serializedObject.FindProperty("m_BehaviorType");
@@ -108,7 +111,8 @@ namespace TCS.MLAgents.Editor {
             m_ComponentsToExclude = serializedObject.FindProperty("m_ComponentsToExclude");
         }
         
-        public override void OnInspectorGUI() {
+        public override void OnInspectorGUI()
+        {
             serializedObject.Update();
             
             EditorGUILayout.LabelField("ML Behavior Configuration", EditorStyles.boldLabel);
@@ -119,7 +123,8 @@ namespace TCS.MLAgents.Editor {
             EditorGUILayout.PropertyField(m_Description);
             EditorGUILayout.PropertyField(m_BehaviorType);
             
-            if ((MLBehaviorConfig.BehaviorType)m_BehaviorType.enumValueIndex == MLBehaviorConfig.BehaviorType.Inference) {
+            if ((MLBehaviorConfig.BehaviorType)m_BehaviorType.enumValueIndex == MLBehaviorConfig.BehaviorType.Inference)
+            {
                 EditorGUILayout.PropertyField(m_ModelPath);
             }
             
@@ -128,7 +133,8 @@ namespace TCS.MLAgents.Editor {
             // Observation Configuration
             EditorGUILayout.LabelField("Observation Configuration", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(m_UseVectorObservations);
-            if (m_UseVectorObservations.boolValue) {
+            if (m_UseVectorObservations.boolValue)
+            {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(m_VectorObservationSize);
                 EditorGUILayout.PropertyField(m_StackedVectorObservations);
@@ -151,7 +157,8 @@ namespace TCS.MLAgents.Editor {
             EditorGUILayout.LabelField("Reward Configuration", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(m_MaxStepReward);
             EditorGUILayout.PropertyField(m_EnableRewardClipping);
-            if (m_EnableRewardClipping.boolValue) {
+            if (m_EnableRewardClipping.boolValue)
+            {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(m_RewardClippingMin);
                 EditorGUILayout.PropertyField(m_RewardClippingMax);
@@ -207,11 +214,42 @@ namespace TCS.MLAgents.Editor {
             serializedObject.ApplyModifiedProperties();
             
             // Validation button
-            if (GUILayout.Button("Validate Configuration")) {
+            if (GUILayout.Button("Validate Configuration"))
+            {
                 ValidateConfiguration();
             }
         }
         
-        private void ValidateConfiguration() {\n            var config = target as MLBehaviorConfig;\n            if (config == null) return;\n            \n            var result = TCS.MLAgents.Validation.ConfigurationValidator.ValidateConfiguration(config);\n            \n            if (result.IsValid) {\n                EditorUtility.DisplayDialog(\"Validation Result\", \"Configuration is valid!\", \"OK\");\n            } else {\n                string message = $\"Configuration has {result.Errors.Count} errors:\\n\\n\";\n                foreach (string error in result.Errors) {\n                    message += $\"- {error}\\n\";\n                }\n                \n                if (result.Warnings.Count > 0) {\n                    message += $\"\\nAnd {result.Warnings.Count} warnings:\\n\\n\";\n                    foreach (string warning in result.Warnings) {\n                        message += $\"- {warning}\\n\";\n                    }\n                }\n                \n                EditorUtility.DisplayDialog(\"Validation Result\", message, \"OK\");\n            }\n        }
+        private void ValidateConfiguration()
+        {
+            var config = target as MLBehaviorConfig;
+            if (config == null) return;
+            
+            var result = TCS.MLAgents.Validation.ConfigurationValidator.ValidateConfiguration(config);
+            
+            if (result.IsValid)
+            {
+                EditorUtility.DisplayDialog("Validation Result", "Configuration is valid!", "OK");
+            }
+            else
+            {
+                string message = $"Configuration has {result.Errors.Count} errors:\n\n";
+                foreach (string error in result.Errors)
+                {
+                    message += $"- {error}\n";
+                }
+                
+                if (result.Warnings.Count > 0)
+                {
+                    message += $"\nAnd {result.Warnings.Count} warnings:\n\n";
+                    foreach (string warning in result.Warnings)
+                    {
+                        message += $"- {warning}\n";
+                    }
+                }
+                
+                EditorUtility.DisplayDialog("Validation Result", message, "OK");
+            }
+        }
     }
 }

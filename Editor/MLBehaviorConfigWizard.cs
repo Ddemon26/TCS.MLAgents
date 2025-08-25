@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEditor;
 using TCS.MLAgents.Configuration;
 
-namespace TCS.MLAgents.Editor {
+namespace TCS.MLAgents.Editor
+{
     /// <summary>
     /// Wizard for creating new MLBehaviorConfig assets
     /// </summary>
-    public class MLBehaviorConfigWizard : ScriptableWizard {
+    public class MLBehaviorConfigWizard : ScriptableWizard
+    {
         public string behaviorName = "NewBehavior";
         public MLBehaviorConfig.BehaviorType behaviorType = MLBehaviorConfig.BehaviorType.Inference;
         public string modelPath = "";
@@ -19,11 +21,13 @@ namespace TCS.MLAgents.Editor {
         public float episodeTimeout = 30.0f;
         
         [MenuItem("Assets/Create/TCS ML-Agents/MLBehaviorConfig Wizard")]
-        static void CreateWizard() {
+        static void CreateWizard()
+        {
             DisplayWizard<MLBehaviorConfigWizard>("Create MLBehaviorConfig", "Create");
         }
         
-        void OnWizardCreate() {
+        void OnWizardCreate()
+        {
             // Create new MLBehaviorConfig asset
             var config = CreateInstance<MLBehaviorConfig>();
             config.SetBehaviorName(behaviorName);
@@ -42,7 +46,8 @@ namespace TCS.MLAgents.Editor {
                 "Enter a file name for the MLBehaviorConfig asset"
             );
             
-            if (!string.IsNullOrEmpty(path)) {
+            if (!string.IsNullOrEmpty(path))
+            {
                 AssetDatabase.CreateAsset(config, path);
                 AssetDatabase.SaveAssets();
                 EditorUtility.FocusProjectWindow();
@@ -50,15 +55,18 @@ namespace TCS.MLAgents.Editor {
             }
         }
         
-        void OnWizardUpdate() {
+        void OnWizardUpdate()
+        {
             helpString = "Create a new MLBehaviorConfig asset";
             errorString = "";
             
-            if (string.IsNullOrEmpty(behaviorName)) {
+            if (string.IsNullOrEmpty(behaviorName))
+            {
                 errorString = "Behavior name cannot be empty";
             }
             
-            if (behaviorType == MLBehaviorConfig.BehaviorType.Inference && string.IsNullOrEmpty(modelPath)) {
+            if (behaviorType == MLBehaviorConfig.BehaviorType.Inference && string.IsNullOrEmpty(modelPath))
+            {
                 errorString = "Model path must be specified for inference behavior";
             }
         }

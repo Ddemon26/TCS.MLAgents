@@ -356,11 +356,11 @@ namespace TCS.MLAgents.Sensors {
                 Debug.DrawRay(origin, direction * rayDistance, rayColor, gizmoDuration);
                 
                 if (hasHit && rayHits[i].collider != null) {
-                    // Draw a simple representation of a sphere at the hit point
+                    // Draw a simple cross at the hit point to mark hits
                     Vector3 hitPoint = rayHits[i].point;
-                    Debug.DrawLine(hitPoint + Vector3.up * 0.1f, hitPoint - Vector3.up * 0.1f, rayColor, gizmoDuration);
-                    Debug.DrawLine(hitPoint + Vector3.right * 0.1f, hitPoint - Vector3.right * 0.1f, rayColor, gizmoDuration);
-                    Debug.DrawLine(hitPoint + Vector3.forward * 0.1f, hitPoint - Vector3.forward * 0.1f, rayColor, gizmoDuration);
+                    Debug.DrawLine(hitPoint + Vector3.up * 0.1f, hitPoint - Vector3.up * 0.1f, hitRayColor, gizmoDuration);
+                    Debug.DrawLine(hitPoint + Vector3.right * 0.1f, hitPoint - Vector3.right * 0.1f, hitRayColor, gizmoDuration);
+                    Debug.DrawLine(hitPoint + Vector3.forward * 0.1f, hitPoint - Vector3.forward * 0.1f, hitRayColor, gizmoDuration);
                 }
             }
         }

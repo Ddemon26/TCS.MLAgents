@@ -10,8 +10,9 @@ namespace TCS.MLAgents.Core {
     /// </summary>
     public class MLAgentComposer : Agent {
         [Header("Composition System")]
-        [SerializeField] bool autoDiscoverComponents = true;
-        [SerializeField] bool debugLogging = false;
+        [SerializeField]
+        public bool autoDiscoverComponents = true;
+        [SerializeField] public bool debugLogging = false;
         
         [Header("Agent Components")]
         [SerializeField] List<Component> registeredComponents = new List<Component>();
