@@ -72,10 +72,9 @@ namespace TCS.MLAgents.Sensors {
             LogDebug($"Initialized with {rayCount} rays, length {rayLength}, tags: {string.Join(", ", detectionTags)}");
         }
         
-        protected override bool OnValidate(AgentContext context) {
+        protected void OnValidate() {
             if (rayCount <= 0) {
                 LogError("Ray count must be positive");
-                return false;
             }
             
             if (rayLength <= 0f) {
@@ -91,8 +90,6 @@ namespace TCS.MLAgents.Sensors {
                 LogWarning("Max angle should be between 0 and 360 degrees");
                 maxAngle = Mathf.Clamp(maxAngle, 1f, 360f);
             }
-            
-            return true;
         }
         
         protected override void OnEpisodeStart(AgentContext context) {

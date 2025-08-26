@@ -103,10 +103,9 @@ namespace TCS.MLAgents.Sensors {
                     $"Compression={compression}, Target={targetType}");
         }
         
-        protected override bool OnValidate(AgentContext context) {
+        protected void OnValidate() {
             if (width <= 0 || height <= 0) {
                 LogError("Camera width and height must be positive");
-                return false;
             }
             
             if (width > 512 || height > 512) {
@@ -122,8 +121,6 @@ namespace TCS.MLAgents.Sensors {
                 LogWarning("Custom target is null, falling back to agent target");
                 targetType = CameraTargetType.Agent;
             }
-            
-            return true;
         }
         
         protected override void OnEpisodeStart(AgentContext context) {
